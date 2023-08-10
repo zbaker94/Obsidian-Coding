@@ -2,7 +2,8 @@
 
 A component, when at all possible (most of the time it is, I promise), should not take in props that fundamentally change it's behavior, layout, etc. This is where partial application comes in. To truly separate concerns you should group similar behavior or JSX in a component that can be composed together with another component (or multiple others) to build a single component that meets your requirements.
 
-![[Pasted image 20230810101639.png]]
+![[Pasted image 20230810104622.png]]
 
 
 ### References:
+https://www.freecodecamp.org/news/separation-of-concerns-react-container-and-presentational-components/#whatistheseparationofconcerns
