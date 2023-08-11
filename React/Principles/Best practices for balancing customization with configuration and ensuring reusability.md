@@ -64,7 +64,7 @@ Your component will render certain HTML elements. These elements will have attri
 
 You should also allow the consumer to pass in custom props for these HTML elements. This can be useful for someone who wants to add additional event handlers or tags like aria which you might not have included out of the box. 
 
-When working with a component library, it is important to determine if a custom prop is needed or if it is the responsibility of the consumer.
+When working with a component library, it is important to determine if a custom prop is needed or if it is the responsibility of the consumer to handle in a different way (ie: composing your component with one of their own).
 
 ### Keyboard
 
@@ -110,9 +110,9 @@ Your code might only expect `Option` to be passed as children but, _Method 2_
 
 You should be able to determine the best way to use your component and enforce that by the way you design your component.
 
-- Proptypes: [[Proptypes]] are a great way to type check the props your component accepts and prevent basic mistakes made by consumers.
-- Documentation: This is one the easiest way to convey information to consumers. It is crucial to highlight **what** is the purpose component along with usage examples.
-- Test cases provide a good reference point to consumers for what and what not to do.
+- ***[[Proptypes]]*** are a great way to type check the props your component accepts and prevent basic mistakes made by consumers.
+- ***Documentation*** is one the easiest way to convey information to consumers. It is crucial to highlight **what** is the purpose component along with usage examples.
+- ***Test cases*** provide a good reference point to consumers for what and what not to do.
 
 
 ### References:
