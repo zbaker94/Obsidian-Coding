@@ -6,6 +6,7 @@ In React, the principle of Immutability is similar to the general software devel
 		- For example if "foo" is passed to a callback that sets state in a parent component to whatever the value of "foo" is, we need to make sure that we both do not mutate "foo" if at all possible and at the very least we make a [[Deep Copy]] of "foo" before mutating and setting it in state.
 		- If we do not, unexpected mutations of "foo" later on could cause the value held in state to change outside of the normal [[React Lifecycle]] due to being [[Pass by Reference]].
 - For **Props** the same principle mostly applies: Do not mutate props unless you first reassign them
+Following this practice insures that if a prop is passed in, it is used in that current form. This prevents having to dove into many components when debugging etc.
 
 
 
