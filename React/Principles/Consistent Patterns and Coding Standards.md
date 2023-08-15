@@ -7,7 +7,7 @@ It is vital when working on a large system and / or a component library to have 
 - [[Higher-Order Component Pattern]] 
 - [[Controlled Components]]
 ***Coding Standards***
-- Naming
-- Imports / Exports
+- [[Naming Conventions|Naming]]
+- Imports and Exports ([[Library Structure|Library Structure]])
 -  Following established patterns
--  Data fetching and flow
+-  [[Data Flow|Data fetching and flow]]
