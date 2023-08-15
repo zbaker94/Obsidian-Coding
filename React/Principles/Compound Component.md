@@ -34,7 +34,7 @@ return (
   );
 ```
 
-Using providers also allows the children to more explicitly determine which values from the parent to consume.
+Using providers also shifts the responsibility of controlling which props a child receives from the parent to the child component. Which you may or may not want.
 ### References:
 https://www.smashingmagazine.com/2021/08/compound-components-react/
 https://blog.logrocket.com/understanding-react-compound-components/
