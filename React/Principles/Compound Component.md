@@ -2,7 +2,6 @@ Compound components are pattern that encloses the state and the behavior of a gr
 
 
 ```jsx
-const Example = () => {
   return (
     <Menu>
       <MenuButton>Actions</MenuButton>
@@ -12,7 +11,6 @@ const Example = () => {
       </MenuList>
     </Menu>
   );
-}
 ```
 
 The `Menu` tag works together with the `MenuList` and `Option` components which is used for a drop-down menu to select items. Here the `<Menu>` manages the state of the UI, then the `<MenuItem>` elements inform how the `<Menu>` should work. Compound components in React are used to build a declarative UI component which helps to avoid prop drilling.
