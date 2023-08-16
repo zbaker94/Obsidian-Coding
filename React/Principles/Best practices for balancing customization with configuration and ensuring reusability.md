@@ -128,6 +128,9 @@ You should be able to determine the best way to use your component and enforce t
 - ***Documentation*** is one the easiest way to convey information to consumers. It is crucial to highlight **what** is the purpose component along with usage examples.
 - ***Test cases*** provide a good reference point to consumers for what and what not to do.
 
+## Escape Hatches
+If all else fails, it is prudent for the developer of reusable code to provide an "escape hatch". An escape hatch is an intentional hole in a library or frameworks  abstraction that allow the developer to access the underlying platform primitive. For example, React has the [`ref` property](https://reactjs.org/docs/refs-and-the-dom.html) to get ahold of a component’s corresponding DOM element, exposing the underlying platform primitive.
 
 ### References:
 https://ankit-m.github.io/blog/building-highly-customizable-react-components/
+https://surma.dev/things/cost-of-convenience/
