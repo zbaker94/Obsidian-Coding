@@ -1,4 +1,17 @@
-## Define boundaries
+## Define Your Components 
+For a reusable library of common building blocks, which elements are likely to be reused? Defining these will give you the most bang for your development buck. A few examples of reusable components in most projects would be buttons, inputs, some way to manage form state (and validation), and a common way of styling elements.
+
+When the rubber meets the road and you need to translate a mockup or wireframe to actual code, knowing which reusable pieces you have will help you determine what needs to be built.
+
+For example, the below [[Compound Component]] contains 4 individual pieces. Two of which are reused. 
+
+![[Pasted image 20230816093352.png]]
+
+The component in teal could be a reusable `ProductTableHeader` component. The elements in red could be reusable `ProductTableRow` components. These could even be broken down further to consider the individual `div` elements and styling that make up their layout.
+
+Once you know what components you will need and how that relates to the reusable pieces that have already been built, you can go on to design any new components.
+
+## Define Component Boundaries
 
 First of all, you should to determine the **expectation** from your component. Try to answer questions like:
 
@@ -6,6 +19,7 @@ First of all, you should to determine the **expectation** from your component.
 - What is the input?
 - What is the output?
 - Does the component have any side effects?
+- Does the component need to track state or is it a [[Controlled Components|controlled component]]?
 - What are the dependencies?
 - What is the component _NOT_ supposed to do?
 
