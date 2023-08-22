@@ -64,7 +64,7 @@ return (<Form initialData={{foo: "", bar: ""}}) >
 </Form>
 ```
 
-Because the "path" of the input's bound value was the only part of the code that changed from input to input, we abstract that away and simplify the integration of our `Input` component and our `Form` component.
+Because the "path" of the input's bound value was the only part of the code that changed from input to input, we abstracted that away and simplify the integration of our `Input` component and our `Form` component.
 ### References:
 https://surma.dev/things/cost-of-convenience/ 
 https://jesseduffield.com/React-Abstractions/
