@@ -63,7 +63,14 @@ const counter = () => {
 }
 ```
 
-While (in theory) this works just fine, you may feel that this is a ton of repeated code for such simple functionality. All of the buttons
+While (in theory) this works just fine, you may feel that this is a ton of repeated code for such simple functionality. All of the buttons are doing more or less the same thing. Same styles, all are dispatching to the reducer, etc. So let's fix that.
+
+Your first urge may be to do something like the following
+
+##### Counter Button Component
+
+
+##### New and Improved Counter Component
 
 ### References:
 https://surma.dev/things/cost-of-convenience/ 
