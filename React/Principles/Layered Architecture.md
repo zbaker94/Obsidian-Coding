@@ -12,7 +12,12 @@ We have a basic input that wraps the html input element.
 ![[Pasted image 20230822120325.png]]
 We have a form component that renders it's children, keeps track of various state values, and provides functions to set and reset the state (via the useContext hook).
 ![[Pasted image 20230822120403.png]]
-So how do we get these two elements to communicate with each other? The most basic answer
+So how do we get these two elements to communicate with each other? 
+
+The most basic answer is to simply wrap whichever inputs need form access in a single component that is in turn wrapped by the provider. We then just connect the relevant form methods to the inputs.
+
+```jsx
+```
 ### References:
 https://surma.dev/things/cost-of-convenience/ 
 https://jesseduffield.com/React-Abstractions/
