@@ -91,7 +91,7 @@ To do this, we still need to keep the functionality of the form and inputs separ
 
 ##### Control Component 
 ```jsx
-const Control = ({children, value, validation,...inputProps}) => {
+const Control = ({children, value, validation, setErrorFlag,...inputProps}) => {
 
 	const errorMessage = useMemo(() => {
 		// return a string if invalid and undefined if valid 
@@ -101,6 +101,12 @@ const Control = ({children, value, validation,...inputProps}) => {
 	}, [value, validation])
 
 	const errorFlag = errorMessage === undefined 
+
+	const onChange = (e) => {
+		if(inputProps?.setErrorFlag){
+			inputProps.setErrorFlag(errorFlag)
+		}
+	}
 
 	const inputPropsControlled = useMemo(() => ({...inputProps,
 	errorFlag,
@@ -157,13 +163,21 @@ const FormControl = ({ControlledComponent, path ...inputProps}) => {
 		if(inputProps.onChange){
 			inputProps.onChange(e)
 		}
-		setValid(path, validVariableTODO)
 		set(path, e.target.value)
 	}
 
-	return <ControlledComponent {...inputProps, value, onChange} />
+	const setErrorFlag = (errorFlag) => {
+		setValid(path, errorFlag)
+	}
+
+	return <ControlledComponent {...inputProps, value, setErrorFlag onChange} />
 }
 ```
+
+In this way, we separate the responsibilities of each component and allow the composition of all three together if needed.
+
+
+
 ### References:
 https://surma.dev/things/cost-of-convenience/ 
 https://jesseduffield.com/React-Abstractions/
