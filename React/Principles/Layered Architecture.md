@@ -89,42 +89,79 @@ However, you may have noticed that this whole architecture involves a ton of rep
 
 To do this, we still need to keep the functionality of the form and inputs separate from each other so that they can be used individually. One way to do this is to create a component that formalizes the interface for controlling an input. This is where layering comes in.
 
-##### ControlledInput Component 
+##### Control Component 
 ```jsx
-const ControlledInput = ({children, value, setValue, 
-						  validation, setValidState, validState,
-						  inputProps}) => {
-	const [errorMessage, setErrorMessage] = useState(undefined)
+const Control = ({children, value, validation,...inputProps}) => {
 
-	const doValidation = (value) => {
+	const errorMessage = useMemo(() => {
 		// return a string if invalid and undefined if valid 
 		// based on the passed in 
 		// validation prop and the value.
 		// possibly include defaults for inputProps.required etc.
-	}
+	}, [value, validation])
+
+	const errorFlag = errorMessage === undefined 
+
+	const inputPropsControlled = useMemo(() => ({...inputProps,
+	errorFlag,
+	value
+	 }))
+
+	return <ControlProvider {...inputPropsControlled} >	
+		{children}
+		<ErrorText showFlag={validState} message={errorMessage} />
+	</ControlProvider>
+}
+```
+
+##### Modified Input
+```jsx
+const Input = () => {
+	const inputProps = useControl()
+	return <input {...inputProps} />
+}
+```
+
+We then compose them together like so
+
+##### ControlledInput
+```jsx
+const ControlledInput = ({value, onChange, validation }) => {
+	return <Control value={value} 
+	onChange={onChange} 
+	validation={validation}>
+		<Input />
+	</Control>
+}
+```
+
+and use it in the following manner
+
+```jsx
+<ControlledInput value={myExternalvalue} 
+onChange={setMyexternalValue} 
+validation={[...]}
+/>
+```
+
+With this pattern, we can inject additional behavior into the Control component as needed (such as showing an error message or generic validation) without changing the incoming interface or the props that Input takes in.
+
+So now, to connect this to the form, we simply create another layer that can communicate between the Form and the Control interface.
+
+```jsx
+const FormControl = ({ControlledComponent, path ...inputProps}) => {
+	const {set, formState, getValue, setValid} = useForm()
 	
+	const value = getvalue(path)
 	const onChange = (e) => {
-		if(inputProps?.onChange){
+		if(inputProps.onChange){
 			inputProps.onChange(e)
 		}
-	
-		setValue(e.target.value)
+		setValid(path, validVariableTODO)
+		set(path, e.target.value)
 	}
 
-	useEffect(() => {
-		const error = doValidation(value)
-		setErrorMessage(error)
-		const validFlag = error === undefined
-		setValid(validFlag) 
-	}, [value])
-
-	return <ControlProvider inputProps={inputProps}
-		validState={validState} 
-		value={value}
-		>	
-		{children}
-		<ErrorText show={validState} message={errorMessage} />
-	</ControlProvider>
+	return <ControlledComponent {...inputProps, value, onChange} />
 }
 ```
 ### References:
