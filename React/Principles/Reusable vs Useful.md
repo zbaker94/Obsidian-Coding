@@ -3,9 +3,9 @@ Reusable component libraries are tricky to manage and maintain. Not all componen
 For example, if I have a need to lay out a page, I may simply do so with basic html `div` elements and use css to style them with [[Flexbox]] or [[CSS Grid]]. However, if I am thinking of reuse (or maybe after doing the same process 2+ times), I may consider creating a set of components that abstract and formalize the behavior of my layout.
 
 ```jsx
-const FlexContainer = ({children}) => {
+const FlexContainer = ({children, flexDirection}) => {
 	return (
-		<StyleWrapper display="flex">
+		<StyleWrapper display="flex" flexDirection={flexDirection}>
 			<div>{children}</div>
 		</StyleWrapper> 
 	)
