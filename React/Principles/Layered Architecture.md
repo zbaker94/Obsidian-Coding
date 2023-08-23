@@ -176,7 +176,11 @@ const FormControl = ({ControlledComponent, path ...inputProps}) => {
 
 In this way, we separate the responsibilities of each component and allow the composition of all three together if needed.
 
+![[Pasted image 20230823123836.png]]
 
+By following this layered approach, we can accommodate many potential requirements changes in the future. Each of these pieces can stand on its own or be layered with any number of potential new components.
+
+For instance, we could create a new low-level wrapper for `select` and swap that out for `Input` in the above examples. If needed, we could use a different global state provider in place of Form and build a wrapper around our controlled inputs that communicates with that. Finally, we can simply swap the base `input` component in our low-level wrapper with one from another library such as MUI or Bootstrap.
 
 ### References:
 https://surma.dev/things/cost-of-convenience/ 
