@@ -65,6 +65,22 @@ return (<Form initialData={{foo: "", bar: ""}}) >
 ```
 
 Because the "path" of the input's bound value was the only part of the code that changed from input to input, we abstracted that away and simplify the integration of our `Input` component and our `Form` component.
+
+This is all well and good. But what if we need to bind a form value to another type of input? Maybe a `select`? We could follow the same pattern as above.
+
+```jsx
+const FormSelect = ({path, onChange, errorFlag, options}) => {
+	const {set, formState, validation} = useForm()
+
+	<Input value={formState[path]} 
+	onChange={(e) => {
+		set(path, e.target.value)
+		onChange(e)
+	}} 
+	errorFlag={validation[path]}
+	/>
+}
+```
 ### References:
 https://surma.dev/things/cost-of-convenience/ 
 https://jesseduffield.com/React-Abstractions/
