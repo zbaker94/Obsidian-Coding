@@ -46,7 +46,7 @@ Hopefully you have seen some of "what stays the same" in the above example. If y
 const FormInput = ({path, onChange, errorFlag}) => {
 	const {set, formState, validation} = useForm()
 
-	<Input value={formState[path]} 
+	return <Input value={formState[path]} 
 	onChange={(e) => {
 		set(path, e.target.value)
 		onChange(e)
@@ -70,15 +70,61 @@ This is all well and good. But what if we need to bind a form value to another t
 
 ```jsx
 const FormSelect = ({path, onChange, errorFlag, options}) => {
-	const {set, formState, validation} = useForm()
+	const {set, formState, validation, getValue} = useForm()
 
-	<Input value={formState[path]} 
+	return <Select value={formState[path]}
+	options={options} 
 	onChange={(e) => {
 		set(path, e.target.value)
 		onChange(e)
 	}} 
 	errorFlag={validation[path]}
 	/>
+}
+```
+
+This works great! We have a consistent pattern for connecting an input to the form all while maintaining the props that need to get passed to the underlying component.
+
+However, you may have noticed that this whole architecture involves a ton of repeated code. Furthermore, it couples the validation directly to the form and inputs themselves. For future extensibility and reuse, we should fix that. 
+
+To do this, we still need to keep the functionality of the form and inputs separate from each other so that they can be used individually. One way to do this is to create a component that formalizes the interface for controlling an input. This is where layering comes in.
+
+##### ControlledInput Component 
+```jsx
+const ControlledInput = ({children, value, setValue, 
+						  validation, setValidState, validState,
+						  inputProps}) => {
+	const [errorMessage, setErrorMessage] = useState(undefined)
+
+	const doValidation = (value) => {
+		// return a string if invalid and undefined if valid 
+		// based on the passed in 
+		// validation prop and the value.
+		// possibly include defaults for inputProps.required etc.
+	}
+	
+	const onChange = (e) => {
+		if(inputProps?.onChange){
+			inputProps.onChange(e)
+		}
+	
+		setValue(e.target.value)
+	}
+
+	useEffect(() => {
+		const error = doValidation(value)
+		setErrorMessage(error)
+		const validFlag = error === undefined
+		setValid(validFlag) 
+	}, [value])
+
+	return <ControlProvider inputProps={inputProps}
+		validState={validState} 
+		value={value}
+		>	
+		{children}
+		<ErrorText show={validState} message={errorMessage} />
+	</ControlProvider>
 }
 ```
 ### References:
