@@ -205,9 +205,11 @@ use a wrapping [[Compound Component]]
 return ( 
 	<div> 
 		<h1>Conditional Rendering with enums</h1> 
-		<EnumState /> 
-		<EnumState state="bar" /> 
-		<EnumState state="foo" /> 
+		<ColorScheme /> 
+		{...}
+		<ColorScheme state="bar" /> 
+		{...}
+		<ColorScheme state="foo" /> 
 	</div> 
 );
 ```
