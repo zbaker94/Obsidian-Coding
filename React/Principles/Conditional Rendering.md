@@ -93,6 +93,11 @@ return (
 );
 ```
 
+```js
+a || b
+c && d
+```
+
 This pattern is less preferred, though more readable, because of the fact that javascript will evaluate the left hand side of the "and" operator as a boolean. This means if a number is used, and that number happens to be 0, the condition will fail.
 
 This is also prone to issues in the above example because if `isPacked` is false, we could see the string "false" in the final jsx.
