@@ -9,7 +9,7 @@ For example, the below [[Compound Component]] contains 4 individual pieces. Two 
 
 The component in teal could be a reusable `ProductTableHeader` component. The elements in red could be reusable `ProductTableRow` components. These could even be broken down further to consider the individual `div` elements and styling that make up their layout.
 
-Once you know what components you will need and how that relates to the reusable pieces that have already been built, you can go on to design any new components.
+Once you know which components you will need and how that relates to the reusable pieces that have already been built, you can go on to design any new components.
 
 ## Define Component Boundaries
 
@@ -35,12 +35,13 @@ Always try to make the component easy to start off with — minimum or no input 
 
 ## Basic customization
 
-Consumers will expect you to support simple changes to your component out of the box. For example, it is common for any interactive element to support a `disabled` prop.
+Consumers will, however expect you to support simple changes to your component out of the box. For example, it is common for any interactive element to support a `disabled` prop.
 
 ### Functionality changes 
 These affect the way your component behaves. Think carefully about what changes you want the consumer to make. You may not need to support functionality changes for simple components, but it might make sense for complex components
 - Use your black box representation to identify the functionality changes needed.
 - For each functionality change identify if it is the responsibility of the component to implement or that of the consumer.
+	- for example, do you take in a `style` prop or expose a series of props such as `fontcolor`, `padding`, etc. and allow the component to decide how each are expressed?
 
 ### Style changes
 
@@ -70,13 +71,13 @@ The renderer only cares about how the component looks and other items which need
 
 These handle the business logic for the particular block — event handlers, refs, roles, etc. These are just containers and do not have any styles. This abstracts away the working logic from rendering and consumers can simply swap out renderers without affecting the functionality. Advanced consumers, who want complete control, can replace this component and handle everything themselves.
 
-This splitting allows for quicker changes and promotes modular code, improving the testability of your code.
+This splitting allows for quicker changes and promotes modular code, improving the testability of your work.
 
 ## Custom props
 
 Your component will render certain HTML elements. These elements will have attributes which you programmed for.
 
-You should also allow the consumer to pass in custom props for these HTML elements. This can be useful for someone who wants to add additional event handlers or tags like aria which you might not have included out of the box. 
+You should also allow the consumer to pass in custom props for these HTML elements. This can be useful for someone who wants to add additional event handlers or tags like `aria` which you might not have included out of the box. 
 
 When working with a component library, it is important to determine if a custom prop is needed or if it is the responsibility of the consumer to handle in a different way (ie: composing your component with one of their own).
 
@@ -129,7 +130,7 @@ You should be able to determine the best way to use your component and enforce t
 - ***Test cases*** provide a good reference point to consumers for what and what not to do.
 
 ## Escape Hatches
-If all else fails, it is prudent for the developer of reusable code to provide an "escape hatch". An escape hatch is an intentional hole in a library or frameworks  abstraction that allow the developer to access the underlying platform primitive. For example, React has the [`ref` property](https://reactjs.org/docs/refs-and-the-dom.html) to get ahold of a component’s corresponding DOM element, exposing the underlying platform primitive.
+If all else fails, it is prudent for the developer of reusable code to provide an "escape hatch". An escape hatch is an intentional hole in a library or frameworks  abstraction that allows the developer to access the underlying platform primitive. For example, React has the [`ref` property](https://reactjs.org/docs/refs-and-the-dom.html) to get ahold of a component’s corresponding DOM element, exposing the underlying platform primitive.
 
 
 ### References:

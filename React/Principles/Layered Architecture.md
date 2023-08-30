@@ -1,7 +1,6 @@
 
 Layered architecture is a principle that applies in many areas of software development and specifically when writing code for others to use. The desire to provide a set of building blocks that do not force a developer to fully opt in or opt out of your tools increases the likelihood of long term adoption. This makes your code more [[Reusable vs Useful|Useful]]. Furthermore, a layered architecture makes your code more easily extendable in the future and therefore simpler to maintain with less risk of painting yourself into a corner.
 
-
 ## What is it?
 Long story short, layered architecture is the idea that having multiple layers of abstraction will result in the above benefits. To do so, you must separate what differs from what stays the same with an eye towards flexibility. A reusable component is no good if a future requirement means having to rebuild it. 
 
@@ -10,7 +9,7 @@ Long story short, layered architecture is the idea that having multiple layers o
 We have a basic input that wraps the html input element.
 
 ![[Pasted image 20230822120325.png]]
-We have a form component that renders it's children, keeps track of various state values, and provides functions to set and reset the state (via the useContext hook).
+We have a form component that renders it's children, keeps track of various state values, and provides functions to set and reset the state (via the [[useContext]] hook).
 ![[Pasted image 20230822120403.png]]
 So how do we get these two elements to communicate with each other? 
 
@@ -64,7 +63,7 @@ return (<Form initialData={{foo: "", bar: ""}}) >
 </Form>
 ```
 
-Because the "path" of the input's bound value was the only part of the code that changed from input to input, we abstracted that away and simplify the integration of our `Input` component and our `Form` component.
+Because the "path" of the input's bound value was the only part of the code that changed from input to input, we abstract that away and simplify the integration of our `Input` component and our `Form` component.
 
 This is all well and good. But what if we need to bind a form value to another type of input? Maybe a `select`? We could follow the same pattern as above.
 
@@ -85,7 +84,7 @@ const FormSelect = ({path, onChange, errorFlag, options}) => {
 
 This works great! We have a consistent pattern for connecting an input to the form all while maintaining the props that need to get passed to the underlying component.
 
-However, you may have noticed that this whole architecture involves a ton of repeated code. Furthermore, it couples the validation directly to the form and inputs themselves. For future extensibility and reuse, we should fix that. 
+However, you may have noticed that this whole architecture *still* involves a ton of repeated code. Furthermore, it couples the validation directly to the form and inputs themselves. For future extensibility and reuse, we should fix that. 
 
 To do this, we still need to keep the functionality of the form and inputs separate from each other so that they can be used individually. One way to do this is to create a component that formalizes the interface for controlling an input. This is where layering comes in.
 

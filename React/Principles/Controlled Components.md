@@ -1,1 +1,3 @@
 In React, a controlled component is **a component that is controlled by React state** while an uncontrolled component is a component that maintains its own internal state. A controlled component receives its current value and an update callback via props, and the parent component manages the state of the component.
+
+Because of this, every controlled component has an uncontrolled component as an ancestor.

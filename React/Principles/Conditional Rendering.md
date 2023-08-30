@@ -30,9 +30,9 @@ export default function PackingList() {
 }
 ```
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. Imagine now that you want to add a checkmark (✔) to packed items if `isPacked={true}`.
 
-You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
+You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)  in the `Item` like so:
 
 ```jsx
 if (isPacked) {  
@@ -46,12 +46,21 @@ return <li className="item">{name}</li>;
 
 If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end.
 
+You could also do this with [[Template Literals]] and the [[Ternary Operator]].
+
+```jsx
+return <li className="item">{`${name} ${isPacked ? ✔ : ""}`}</li>;
+```
+
 ### Conditionally returning nothing with `null` [](https://react.dev/learn/conditional-rendering#conditionally-returning-nothing-with-null "Link for this heading")
 
-In some situations, you won’t want to render anything at all. For example, say you don’t want to show packed items at all. A component must return something. In this case, you can return `null`:
+In some situations, you won’t want to render anything at all. For example, say you don’t want to show packed items at all. A component must return something; even if that is nothing. In this case, you can return `null`:
 
-```
-if (isPacked) {  return null;}return <li className="item">{name}</li>;
+```js
+//inside the map funtion to render items
+if (data.isPacked) {  return null }
+
+return <Item name={data.name}/>;
 ```
 
 If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
@@ -59,16 +68,14 @@ If `isPacked` is true, the component will return nothing, `null`. Otherwise, it 
 In practice, returning `null` from a component isn’t common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component’s JSX.
 
 ```jsx
-if (isPacked) {  
+if (packingList[i].isPacked) {  
 
-	return <li className="item">{name} ✔</li>;  
+	return null;  
 
 }  
 
-return <li className="item">{name}</li>;
+return <Item name={packingList[i].name} />;
 ```
-
-Typically you'd want to do this with [[Template Literals]] and the [[Ternary Operator]].
 
 ### Logical AND operator (`&&`) [](https://react.dev/learn/conditional-rendering#logical-and-operator- "Link for this heading")
 
@@ -86,7 +93,9 @@ return (
 );
 ```
 
-This pattern is less preferred, though more readable, because of the fact that javascript will evaluate the left hand side of the and operator as a boolean. This means if a number is used, and that number happens to be 0, the condition will fail.
+This pattern is less preferred, though more readable, because of the fact that javascript will evaluate the left hand side of the "and" operator as a boolean. This means if a number is used, and that number happens to be 0, the condition will fail.
+
+This is also prone to issues in the above example because if `isPacked` is false, we could see the string "false" in the final jsx.
 
 ### Conditionally assigning JSX to a variable [](https://react.dev/learn/conditional-rendering#conditionally-assigning-jsx-to-a-variable "Link for Conditionally assigning JSX to a variable")
 
@@ -122,7 +131,7 @@ The patterns above regarding if statements can also be expanded out using switch
 return ( 
 <div> 
 	{(
-		function() {
+		() => {
 			switch(param) {
 				case 'foo': return 'bar';
 				default: return 'foo'; 
@@ -156,7 +165,15 @@ We can include a component as the value in this type of object
 const ENUM_STATES = {
 foo: <Foo />,
 bar: <Bar />,
-default: <Default /> };
+default: <Default />
+};
+
+// or, to avoid pre-rendering the JSX
+const ENUM_STATES = {
+foo: Foo,
+bar: Bar,
+default: Default
+};
 ```
 
 From here we can either render directly from `ENUM_STATES` or we can create a component to handle any additional rendering and / or logic.
@@ -171,7 +188,10 @@ return (
 		{ENUM_STATES["foo"]} 
 	</div> 
 );
-// use a wrapping [[Compound Component]] 
+```
+
+use a wrapping [[Compound Component]] 
+```jsx
 return ( 
 	<div> 
 		<h1>Conditional Rendering with enums</h1> 
