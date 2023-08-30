@@ -142,7 +142,8 @@ return (
 				default: return 'foo'; 
 			} 
 		} 
-})()} </div>
+})()
+} </div>
 ```
 
 Note carefully though that you always have to use default for the switch case operator since in React, a component always needs to return an element or null.
