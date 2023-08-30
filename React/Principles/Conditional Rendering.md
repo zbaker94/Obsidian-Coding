@@ -180,18 +180,22 @@ foo: Foo,
 bar: Bar,
 default: Default
 };
+
+Object.freeze(cloneDeep(ENUM_STATES))
 ```
 
 From here we can either render directly from `ENUM_STATES` or we can create a component to handle any additional rendering and / or logic.
 
 ```jsx
 // render the result directly 
+const MyEnumVariable = ENUM_STATES["default"]
 return ( 
 	<div> 
 		<h1>Conditional Rendering with enums</h1> 
 		{ENUM_STATES["default"]} 
 		{ENUM_STATES["bar"]} 
 		{ENUM_STATES["foo"]} 
+		<MyEnumVariable />
 	</div> 
 );
 ```
