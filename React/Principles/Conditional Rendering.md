@@ -57,7 +57,7 @@ return <li className="item">{`${name} ${isPacked ? ✔ : ""}`}</li>;
 In some situations, you won’t want to render anything at all. For example, say you don’t want to show packed items at all. A component must return something; even if that is nothing. In this case, you can return `null`:
 
 ```js
-//inside the map funtion to render items
+//inside the map function to render items
 if (data.isPacked) {  return null }
 
 return <Item name={data.name}/>;
