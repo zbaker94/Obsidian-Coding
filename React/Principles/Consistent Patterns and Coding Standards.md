@@ -5,7 +5,7 @@ It is vital when working on a large system and / or a component library to have 
 - [[Conditional Rendering]]
 - [[Compound Component]]
 - [[Higher-Order Component Pattern]] 
-- [[Controlled Components]]
+- [[Controlled Components]] **
 ***Coding Standards***
 - [[Naming Conventions|Naming]]
 - Imports and Exports ([[Library Structure|Library Structure]])

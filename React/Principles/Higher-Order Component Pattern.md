@@ -93,7 +93,9 @@ const Component = useMemo(() => {
 	return <div>Hello World</div>
 }, [])
 
+
 <Parent Child={Component} />
+
 ```
 
 This pre-renders the component as part of the [[Hooks]] lifecycle vs allowing the child to render the component on its own terms. This will cause issues when attempting to do so like this
