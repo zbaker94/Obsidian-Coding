@@ -21,8 +21,9 @@
 	- Number of employees needed for shift
 
 ## Process
-1. Fill each shift with every employee that is available for the shift and rank their desirability on that shift (skills, rules, availability weight, etc.)
-2. for the length of the list of shifts
+1. Based on shift creation rules, generate empty shifts for an arbitrary span of time (days?)
+2. Fill each shift with every employee that is available for the shift and rank their desirability on that shift (skills, rules, availability weight, etc.)
+3. for the length of the list of shifts
 	1. Choose a random shift 
 		1. if list of possible employees is < needed for the shift 
 			1. if this is the first iteration 
@@ -30,7 +31,7 @@
 			2. else
 				1. roll back or start over
 		2. else
-			1. choose random employee for shift that meets or exceeds some threshold of desire
+			1. choose random employee for shift that meets or exceeds some threshold of desirability (or just highest ranked. Possibly set threshold based on the highest ranked items score?) 
 			2. If the shift is not full
 				1. filter any employees whose rules would be violated
 				2. goto 1
