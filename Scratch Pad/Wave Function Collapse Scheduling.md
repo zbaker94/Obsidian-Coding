@@ -34,11 +34,11 @@
 			2. If the shift is not full
 				1. filter any employees whose rules would be violated
 				2. goto 1
-	2. update every other shifts list of employees to meet rules
+	2. filter every other shifts list of employees to meet rules
 	3. if any shifts list of possible employees is < needed for the shift 
 		1. roll back or start over
 	4. else if all shifts are full
-		1. end
+		1. end (success)
 	5. else
 		1. goto 1
 
