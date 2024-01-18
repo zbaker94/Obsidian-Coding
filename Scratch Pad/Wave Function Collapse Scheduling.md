@@ -25,9 +25,12 @@
 2. for the length of the list of shifts
 	1. Choose a random shift 
 		1. if list of possible employees is < needed for the shift 
-			1. roll back or start over
+			1. if this is the first iteration 
+				1. error out, not enough availability to cover X shift (could we detect this earlier?)
+			2. else
+				1. roll back or start over
 		2. else
-			1. choose highest ranked employee for shift
+			1. choose random employee for shift that meets or exceeds some threshold of desire
 			2. If the shift is not full
 				1. filter any employees whose rules would be violated
 				2. goto 1
@@ -39,6 +42,6 @@
 	5. else
 		1. goto 1
 
-*It is possible to do multiple iterations of this to generate possible schedules. simply starting at a different random shift could yield significantly different results. Other options could be to explore relaxing or ignoring certain rules if they result in a schedule that works. Maybe just store invalid schedules as possible options. Could also generate a schedule that only accounts for availability and skills as a "starting point"*
+*It is possible to do multiple iterations of this to generate different possible schedules. simply starting at a different random shift could yield significantly different results. Other options could be to explore relaxing or ignoring certain rules if they result in a schedule that works. Maybe just store invalid schedules as possible options. Could also generate a schedule that only accounts for availability as a "starting point" for manual scheduling.*
 
-*In practice this would shake out as several options for the user to work from. Ideally we could generate a schedule that requires zero modification from the user but will provide the ability to arbitrarily change any schedule as they see fit. A QL feature here would be useful if we show the user invalid generated schedules as well: notify the user that a schedule violates one or more rules (but do not prevent them from using it).*
+*In practice this would shake out as several options for the user to work from. Ideally we could generate a schedule that requires zero modification from the user but will provide the ability to arbitrarily change any schedule as they see fit. A QL feature here would also be useful if we show the user invalid generated schedules: notify the user that a schedule violates one or more rules (but do not prevent them from using it).*
