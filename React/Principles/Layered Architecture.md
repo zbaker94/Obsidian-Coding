@@ -118,7 +118,7 @@ const Control = ({children, value, validation, setErrorFlag,...inputProps}) => {
 	</ControlProvider>
 }
 ```
-
+Now we can have 
 ##### Modified Input
 ```jsx
 const Input = () => {
