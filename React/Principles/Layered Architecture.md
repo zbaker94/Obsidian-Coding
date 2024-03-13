@@ -90,7 +90,7 @@ To do this, we still need to keep the functionality of the form and inputs separ
 
 ##### Control Component 
 ```jsx
-const Control = ({children, value, validation, setErrorFlag,...inputProps}) => {
+const Control = ({value, validation, setErrorFlag, Component,...inputProps}) => {
 
 	const errorMessage = useMemo(() => {
 		// return a string if invalid and undefined if valid 
@@ -112,30 +112,22 @@ const Control = ({children, value, validation, setErrorFlag,...inputProps}) => {
 	value
 	 }))
 
-	return <ControlProvider {...inputPropsControlled} >	
-		{children}
+	return <>	
+		<Component {...inputPropsControlled} />
 		<ErrorText showFlag={validState} message={errorMessage} />
-	</ControlProvider>
+	</>
 }
 ```
 Now we can have 
-##### Modified Input
-```jsx
-const Input = () => {
-	const inputProps = useControl()
-	return <input {...inputProps} />
-}
-```
-
-We then compose them together like so
 
 ##### ControlledInput
 ```jsx
-const ControlledInput = ({value, onChange, validation }) => {
+const ControlledInput = ({value, onChange, validation, Component }) => {
 	return <Control value={value} 
 	onChange={onChange} 
 	validation={validation}>
-		<Input />
+	Component={Input}
+	>	
 	</Control>
 }
 ```
