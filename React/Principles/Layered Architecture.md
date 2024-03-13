@@ -99,7 +99,7 @@ const Control = ({children, value, validation, setErrorFlag,...inputProps}) => {
 		// possibly include defaults for inputProps.required etc.
 	}, [value, validation])
 
-	const errorFlag = errorMessage === undefined 
+	const errorFlag = errorMessage !== undefined 
 
 	const onChange = (e) => {
 		if(inputProps?.setErrorFlag){
