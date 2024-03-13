@@ -57,6 +57,7 @@ const FormInput = ({path, onChange, errorFlag}) => {
 
 ##### Parent Component
 ```jsx
+
 return (<Form initialData={{foo: "", bar: ""}}) >
 	<FormInput path="foo" />
 	<FormInput path="bar" />
