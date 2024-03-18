@@ -4,6 +4,7 @@ Concretely, **a higher-order component is a function that takes a component and
 
 Higher-order components are not commonly used in modern React code. However, we can use a similar pattern using the *Children* prop.
 
+
 ```jsx
 <WrappingComponent>
 	<WrappedComponent />
